@@ -5,11 +5,12 @@
 SITE = {
     "ad": "Bartın Bildirim",
     "slogan": "Bartın’da Ne Var Ne Yok?",
-    "alan": "https://www.bartinbildirim.com",   # ⏳ alan adı teyit edilmedi
+    "alan": "https://umut-web4medya.github.io/bartinbildirim",   # şimdilik GitHub Pages; alan adı alınınca değiştir
     "kurulus": 2026,
     # ⛔ Örnek ilanlar yayındayken False kalsın → tüm sayfalar noindex, sitemap üretilmez.
     "yayin": False,
-    "whatsapp": "",        # ⏳ 90XXXXXXXXXX biçiminde — İlan Ekle formu buraya mesaj hazırlar
+    "whatsapp": "905303158752",   # 90XXXXXXXXXX biçiminde — İlan Ekle formu buraya mesaj hazırlar
+    "telefon": "0530 315 87 52",
     "eposta": "",          # ⏳
     "bildirim_link": "",   # ⏳ "Bildirimleri Aç" (WhatsApp kanalı / Instagram vb.)
     "sosyal": {            # ⏳ boş olan ikon bağlantısız gösterilir
@@ -42,6 +43,7 @@ MEKANLAR = [
 
 # ⚠️ ÖRNEK İLANLAR (tasarımdaki metinler). Gerçek ilanlar gelince değiştir, sonra SITE["yayin"] = True.
 # gorsel: images/ilanlar/<slug>.webp (ya da .jpg/.png) varsa otomatik kullanılır; yoksa kategori renginde kapak çizilir.
+# ⚠️ Şu anki görseller ÖRNEK (CC0, kaynaklar _src/kaynak/ornek-gorseller.json) — gerçek afişler gelince üzerine yaz.
 # kapak_yazi: görsel yokken kapakta yazan kısa metin (tasarımdaki afişlerden).
 ILANLAR = [
     {"slug": "emre-kaya-akustik-konser", "baslik": "Emre Kaya Akustik Konser", "kisa": "Emre Kaya Akustik Konser",
@@ -80,3 +82,31 @@ ONE_CIKAN = ["emre-kaya-akustik-konser", "kale-cafede-canli-muzik-gecesi", "sila
              "deniz-urunleri-aksami", "the-last-band-canli-muzik"]
 
 AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"]
+
+# ⏳ ÖRNEK METİNLER — kullanıcı "şimdilik örnek doldur" dedi (2026-10-04). Kendi metni gelince değiştir.
+# Her sayfa: [(ara başlık ya da None, paragraf), ...]
+SAYFA_METIN = {
+    "hakkimizda": [
+        (None, "Bartın Bildirim, Bartın’daki konser, canlı müzik, tiyatro, festival ve mekan etkinliklerini tek bir yerde toplayan yerel bir ilan sitesidir."),
+        (None, "Amacımız basit: “Bu akşam Bartın’da ne var?” sorusunun cevabını aramak zorunda kalmadan bulabilmeniz. Mekanlar ve organizatörler etkinliklerini bize iletir, biz de herkesin görebileceği şekilde yayınlarız."),
+        ("Kimler ilan verebilir?", "Bartın merkez ve ilçelerindeki kafe, restoran, otel, kültür merkezi ve etkinlik düzenleyen herkes İlan Ekle sayfasından ilan gönderebilir."),
+    ],
+    "iletisim": [
+        (None, "İlan vermek, bir ilanı düzeltmek ya da kaldırmak için bize WhatsApp veya telefon üzerinden ulaşabilirsiniz."),
+        (None, "Etkinliğinizi hızlıca yayınlamamız için başlık, mekan, tarih, saat ve varsa afiş görselini birlikte göndermeniz yeterlidir."),
+    ],
+    "gizlilik-politikasi": [
+        (None, "Bu sayfa, Bartın Bildirim’i kullanırken hangi bilgilerin nasıl işlendiğini açıklar."),
+        ("Topladığımız bilgiler", "Sitede üyelik yoktur. İlan Ekle formuna yazdığınız bilgiler sitede saklanmaz; formu gönderdiğinizde bu bilgiler WhatsApp üzerinden bize mesaj olarak iletilir."),
+        ("Bilgilerin kullanımı", "İlan için gönderdiğiniz ad ve telefon bilgisi yalnızca ilanınızla ilgili sizinle iletişim kurmak için kullanılır, üçüncü kişilerle paylaşılmaz."),
+        ("Çerezler", "Site, çalışması için zorunlu olanlar dışında çerez kullanmaz."),
+        ("İletişim", "Bilgilerinizin silinmesini istemeniz hâlinde İletişim sayfasındaki numaradan bize ulaşabilirsiniz."),
+    ],
+    "kullanim-sartlari": [
+        (None, "Bartın Bildirim’i kullanarak aşağıdaki şartları kabul etmiş sayılırsınız."),
+        ("İlan içerikleri", "İlanlardaki tarih, saat, fiyat ve diğer bilgiler ilan sahibi tarafından iletilir. Etkinliğe gitmeden önce bilgileri mekanla teyit etmenizi öneririz."),
+        ("İlan gönderimi", "Gönderilen ilanlar incelendikten sonra yayınlanır. Yanıltıcı, yasalara aykırı ya da Bartın dışı ilanlar yayınlanmayabilir veya kaldırılabilir."),
+        ("Görseller", "İlanla birlikte gönderilen afiş ve fotoğrafların kullanım hakkının ilan sahibine ait olduğu kabul edilir."),
+        ("Değişiklikler", "Bu şartlar gerektiğinde güncellenebilir; güncel hâli her zaman bu sayfadadır."),
+    ],
+}

@@ -7,6 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import data as D
 
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ALT = urlsplit(D.SITE["alan"]).path.rstrip("/")   # 404.html mutlak yolları bu önekle başlar
 hata, uyari = [], []
 sayfalar = []
 for d, _, dosyalar in os.walk(KOK):
@@ -27,6 +28,7 @@ for yol in sayfalar:
             if u.startswith("/") and g != "404.html":
                 hata.append(f"{g}: kök-göreli yol {u} (alt yol önizlemesinde 404)"); continue
             temiz = unquote(urlsplit(u).path)
+            if u.startswith("/") and ALT and temiz.startswith(ALT + "/"): temiz = temiz[len(ALT):]
             hedef = os.path.normpath(os.path.join(KOK if u.startswith("/") else os.path.dirname(yol), temiz.lstrip("/") if u.startswith("/") else temiz))
             if os.path.isdir(hedef): hedef = os.path.join(hedef, "index.html")
             if not os.path.exists(hedef): hata.append(f"{g}: kırık bağlantı {u}")

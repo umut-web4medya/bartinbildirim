@@ -164,7 +164,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .bos{background:var(--kart);border:1px dashed var(--cizgi2);border-radius:var(--yaricap);padding:28px;text-align:center;color:var(--soluk)}
 .bos p{margin:0 0 14px}
 .not{color:var(--soluk);margin:0}
-.metin{min-height:160px}
+.metin{min-height:160px}.metin h2{font-size:1.05rem;margin:18px 0 6px}.metin p{margin:0 0 10px;line-height:1.65}
 .ilet{margin-bottom:14px}.ilet a{color:var(--mavi);font-weight:600}
 
 /* mekan ızgarası */

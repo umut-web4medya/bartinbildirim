@@ -467,13 +467,18 @@ def duz_sayfa(yol, baslik, aciklama, ek=""):
     onek(yol)
     kir, kld = kirinti([("Ana Sayfa", ""), (baslik, None)])
     def g():
-        # ⏳ Görünür metin kullanıcıdan gelecek — AI metni yazılmaz.
-        return sayfa_basi(kir, e(baslik)) + liste_duzeni(
-            f'<div class="kutu metin">{ek}<p class="not">Bu sayfanın metni hazırlanıyor.</p></div>')
+        # Metin data.SAYFA_METIN'den (şimdilik örnek); yoksa "hazırlanıyor" notu.
+        bloklar = D.SAYFA_METIN.get(yol.strip("/"), [])
+        govde = "".join((f"<h2>{e(b)}</h2>" if b else "") + f"<p>{e(p)}</p>" for b, p in bloklar) \
+            or '<p class="not">Bu sayfanın metni hazırlanıyor.</p>'
+        return sayfa_basi(kir, e(baslik)) + liste_duzeni(f'<div class="kutu metin">{govde}{ek}</div>')
     sayfa(yol, baslik, aciklama, g, "", [kld], "noindex,follow")
 
 def iletisim_ek():
     s = []
+    if S.get("telefon"):
+        s.append(f'<li><a href="tel:+{S["whatsapp"] or ""}">{e(S["telefon"])}</a></li>' if S["whatsapp"]
+                 else f'<li>{e(S["telefon"])}</li>')
     if S["whatsapp"]:
         s.append(f'<li><a href="https://wa.me/{S["whatsapp"]}" target="_blank" rel="noopener">WhatsApp</a></li>')
     if S["eposta"]:
@@ -482,11 +487,13 @@ def iletisim_ek():
 
 def sayfa_404():
     global ONEK
-    ONEK = "/"   # GitHub her derinlikte servis eder → kök-mutlak (alt yol önizlemesinde stilsiz kalabilir)
+    # GitHub her derinlikte servis eder → mutlak yol; alt yolda (…github.io/bartinbildirim/) yolu ALAN'dan al
+    from urllib.parse import urlparse
+    ONEK = urlparse(ALAN).path.rstrip("/") + "/"
     def g():
         return (f'<section class="sb sb-404"><div class="kap"><h1>Sayfa bulunamadı</h1>'
                 f'<p>Aradığınız sayfa taşınmış ya da kaldırılmış olabilir.</p>'
-                f'<a class="dg dg-sari" href="/">Ana Sayfa {svg("ok")}</a></div></section>')
+                f'<a class="dg dg-sari" href="{ONEK}">Ana Sayfa {svg("ok")}</a></div></section>')
     icerik = head("Sayfa bulunamadı", "Aradığınız sayfa bulunamadı.", "404.html", None, "noindex") + ust() + g() + alt()
     yaz("404.html", icerik)
     ONEK = ""
